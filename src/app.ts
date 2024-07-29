@@ -1,12 +1,11 @@
-import fastify from "fastify";
 import cors from "@fastify/cors";
+import fastify from "fastify";
 import {
-  jsonSchemaTransform,
   serializerCompiler,
-  validatorCompiler,
+  validatorCompiler
 } from "fastify-type-provider-zod";
-import { errorHandler } from "./utils/error-handler";
 import { appRoutes } from "./http/routes";
+import { errorHandler } from "./utils/error-handler";
 
 export const app = fastify();
 

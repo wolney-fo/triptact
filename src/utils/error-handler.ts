@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
 import { ZodError } from "zod";
 import { env } from "../env";
-import { InvalidTripStartDate } from "../errors/invalid-trip-start-date";
-import { InvalidTripEndDate } from "../errors/invalid-trip-end-date";
+import { InvalidEndDateError } from "../errors/invalid-end-date-error";
+import { InvalidStartDateError } from "../errors/invalid-start-date-error";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error";
 
 type FastifyErrorHandler = FastifyInstance["errorHandler"];
@@ -20,8 +20,8 @@ export const errorHandler: FastifyErrorHandler = (error, _, reply) => {
   }
 
   if (
-    error instanceof InvalidTripStartDate ||
-    error instanceof InvalidTripEndDate
+    error instanceof InvalidStartDateError ||
+    error instanceof InvalidEndDateError
   ) {
     return reply.status(400).send({ message: error.message });
   }

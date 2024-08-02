@@ -1,7 +1,7 @@
 import { Trip } from "@prisma/client";
 import nodemailer from "nodemailer";
-import { InvalidTripEndDate } from "../errors/invalid-trip-end-date";
-import { InvalidTripStartDate } from "../errors/invalid-trip-start-date";
+import { InvalidEndDateError } from "../errors/invalid-end-date-error";
+import { InvalidStartDateError } from "../errors/invalid-start-date-error";
 import dayjs from "../lib/dayjs";
 import { getMailClient } from "../lib/mail";
 import { TripsRepository } from "../repositories/trips-repository";
@@ -32,11 +32,11 @@ export class CreateTripUseCase {
     emails_to_invite,
   }: CreateTripUseCaseRequest): Promise<CreateTripUseCaseResponse> {
     if (dayjs(starts_at).isBefore(new Date())) {
-      throw new InvalidTripStartDate();
+      throw new InvalidStartDateError();
     }
 
     if (dayjs(ends_at).isBefore(starts_at)) {
-      throw new InvalidTripEndDate();
+      throw new InvalidEndDateError();
     }
 
     const trip = await this.tripsRepository.create({

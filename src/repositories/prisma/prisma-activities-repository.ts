@@ -11,7 +11,7 @@ export class PrismaActivitiesRepository implements ActivitiesRepository {
     return activity;
   }
 
-  async create(data: Prisma.ActivityCreateInput) {
+  async create(data: Prisma.ActivityUncheckedCreateInput) {
     const activity = await prisma.activity.create({
       data,
     });

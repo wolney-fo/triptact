@@ -11,6 +11,16 @@ export class PrismaLinksRepository implements LinksRepository {
     return link;
   }
 
+  async getByTripId(tripId: string) {
+    const links = await prisma.link.findMany({
+      where: {
+        trip_id: tripId,
+      },
+    });
+
+    return links;
+  }
+
   async create(data: Prisma.LinkUncheckedCreateInput) {
     const link = await prisma.link.create({
       data,

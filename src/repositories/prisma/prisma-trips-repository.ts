@@ -30,6 +30,23 @@ export class PrismaTripsRepository implements TripsRepository {
     return trip;
   }
 
+  async findByIdWithActivities(id: string) {
+    const trip = await prisma.trip.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        activities: {
+          orderBy: {
+            occurs_at: "asc",
+          },
+        },
+      },
+    });
+
+    return trip;
+  }
+
   async confirm(id: string) {
     await prisma.trip.update({
       where: { id },

@@ -11,7 +11,7 @@ export class PrismaLinksRepository implements LinksRepository {
     return link;
   }
 
-  async create(data: Prisma.LinkCreateInput) {
+  async create(data: Prisma.LinkUncheckedCreateInput) {
     const link = await prisma.link.create({
       data,
     });

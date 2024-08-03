@@ -11,6 +11,16 @@ export class PrismaActivitiesRepository implements ActivitiesRepository {
     return activity;
   }
 
+  async getByTripId(tripId: string) {
+    const activities = await prisma.activity.findMany({
+      where: {
+        trip_id: tripId,
+      },
+    });
+
+    return activities;
+  }
+
   async create(data: Prisma.ActivityUncheckedCreateInput) {
     const activity = await prisma.activity.create({
       data,

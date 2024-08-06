@@ -20,6 +20,16 @@ export class PrismaParticipantsRepository implements ParticipantsRepository {
     });
   }
 
+  async getByTripId(tripId: string) {
+    const participants = await prisma.participant.findMany({
+      where: {
+        trip_id: tripId,
+      },
+    });
+
+    return participants;
+  }
+
   async create(data: Prisma.ParticipantUncheckedCreateInput) {
     const participant = await prisma.participant.create({
       data,

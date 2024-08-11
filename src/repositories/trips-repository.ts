@@ -10,4 +10,5 @@ export interface TripsRepository {
   findByIdWithActivities(id: string): Promise<TripWithActivities | null>;
   confirm(id: string): Promise<void>;
   create(data: Prisma.TripCreateInput): Promise<Trip>;
+  update(id: string, data: Prisma.TripUpdateInput): Promise<Trip>;
 }

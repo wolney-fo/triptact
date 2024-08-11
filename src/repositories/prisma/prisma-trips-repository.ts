@@ -63,4 +63,15 @@ export class PrismaTripsRepository implements TripsRepository {
 
     return trip;
   }
+
+  async update(id: string, data: Prisma.TripUpdateInput) {
+    const trip = await prisma.trip.update({
+      where: {
+        id,
+      },
+      data,
+    });
+
+    return trip;
+  }
 }

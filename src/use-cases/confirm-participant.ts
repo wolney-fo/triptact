@@ -1,3 +1,4 @@
+import { env } from "../env";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error";
 import { ParticipantsRepository } from "../repositories/participants-repository";
 
@@ -24,11 +25,11 @@ export class ConfirmParticipantUseCase {
     }
 
     if (participant.is_confirmed) {
-      return { tripURL: `http://localhost:3000/trips/${participant.trip_id}` };
+      return { tripURL: `${env.WEB_BASE_URL}/trips/${participant.trip_id}` };
     }
 
     await this.participantsRepository.confirm(participantId);
 
-    return { tripURL: `http://localhost:3000/trips/${participant.trip_id}` };
+    return { tripURL: `${env.WEB_BASE_URL}/trips/${participant.trip_id}` };
   }
 }

@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { env } from "../env";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error";
 import dayjs from "../lib/dayjs";
 import { getMailClient } from "../lib/mail";
@@ -28,7 +29,7 @@ export class ConfirmTripUseCase {
     }
 
     if (trip.is_confirmed) {
-      return { tripURL: `http://localhost:3000/trips/${tripId}` };
+      return { tripURL: `${env.WEB_BASE_URL}/trips/${tripId}` };
     }
 
     await this.tripsRepository.confirm(tripId);
@@ -42,7 +43,7 @@ export class ConfirmTripUseCase {
 
     await Promise.all(
       trip.participants.map(async (participant) => {
-        const confirmationLink = `http://localhost:3333/participants/${participant.id}/confirm`;
+        const confirmationLink = `${env.API_BASE_URL}/participants/${participant.id}/confirm`;
 
         const message = await mail.sendMail({
           from: {
@@ -63,6 +64,6 @@ export class ConfirmTripUseCase {
       })
     );
 
-    return { tripURL: `http://localhost:3000/trips/${tripId}` };
+    return { tripURL: `${env.WEB_BASE_URL}/trips/${tripId}` };
   }
 }

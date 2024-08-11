@@ -1,11 +1,12 @@
+import { Participant } from "@prisma/client";
 import nodemailer from "nodemailer";
+import { env } from "../env";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error";
 import dayjs from "../lib/dayjs";
 import { getMailClient } from "../lib/mail";
 import { ParticipantsRepository } from "../repositories/participants-repository";
 import { TripsRepository } from "../repositories/trips-repository";
 import { getInviteEmailBody } from "../utils/html-email-bodies/invite-email";
-import { Participant } from "@prisma/client";
 
 interface CreateInviteUseCaseRequest {
   tripId: string;
@@ -42,7 +43,7 @@ export class CreateInviteUseCase {
 
     const mail = await getMailClient();
 
-    const confirmationLink = `http://localhost:3333/participants/${participant.id}/confirm`;
+    const confirmationLink = `${env.API_BASE_URL}/participants/${participant.id}/confirm`;
 
     const message = await mail.sendMail({
       from: {

@@ -4,7 +4,7 @@
   "description": "This project is the back-end service for a comprehensive travel management application. The platform enables users to plan and organize trips to their desired destinations, invite companions, and schedule various activities.",
   "main": "index.js",
   "scripts": {
-    "start:dev": "tsx watch src/server.ts",
+    "start:dev": "tsx watch --env-file .env src/server.ts",
     "start": "node dist/server.mjs",
     "build": "tsup src --format esm",
     "test": "echo \"Error: no test specified\" && exit 1"

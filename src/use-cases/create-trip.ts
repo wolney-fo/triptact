@@ -1,5 +1,6 @@
 import { Trip } from "@prisma/client";
 import nodemailer from "nodemailer";
+import { env } from "../env";
 import { InvalidEndDateError } from "../errors/invalid-end-date-error";
 import { InvalidStartDateError } from "../errors/invalid-start-date-error";
 import dayjs from "../lib/dayjs";
@@ -65,7 +66,7 @@ export class CreateTripUseCase {
     const formattedStartDate = dayjs(starts_at).format("LL");
     const formattedEndDate = dayjs(ends_at).format("LL");
 
-    const confirmationLink = `http://localhost:3333/trips/${trip.id}/confirm`;
+    const confirmationLink = `${env.API_BASE_URL}/trips/${trip.id}/confirm`;
 
     const mail = await getMailClient();
 

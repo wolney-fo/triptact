@@ -8,6 +8,8 @@ export async function create(app: FastifyInstance) {
     "/trips/:tripId/links",
     {
       schema: {
+        summary: "Creates a link.",
+        tags: ["Links"],
         params: z.object({
           tripId: z.string().uuid(),
         }),
@@ -17,7 +19,7 @@ export async function create(app: FastifyInstance) {
         }),
         response: {
           201: z.object({
-            linkId: z.string(),
+            linkId: z.string().uuid(),
           }),
         },
       },

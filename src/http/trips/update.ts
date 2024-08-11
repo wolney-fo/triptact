@@ -8,6 +8,8 @@ export async function update(app: FastifyInstance) {
     "/trips/:tripId",
     {
       schema: {
+        summary: "Updates a trip.",
+        tags: ["Trips"],
         params: z.object({
           tripId: z.string().uuid(),
         }),

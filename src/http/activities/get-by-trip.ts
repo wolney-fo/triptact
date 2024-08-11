@@ -8,6 +8,8 @@ export async function getByTrip(app: FastifyInstance) {
     "/trips/:tripId/activities",
     {
       schema: {
+        summary: "Gets an activity.",
+        tags: ["Activities"],
         params: z.object({
           tripId: z.string(),
         }),
@@ -18,7 +20,7 @@ export async function getByTrip(app: FastifyInstance) {
                 date: z.date(),
                 activities: z.array(
                   z.object({
-                    id: z.string(),
+                    id: z.string().uuid(),
                     title: z.string(),
                     occurs_at: z.date(),
                     trip_id: z.string(),

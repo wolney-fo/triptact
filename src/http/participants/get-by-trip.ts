@@ -8,6 +8,8 @@ export async function getByTrip(app: FastifyInstance) {
     "/trips/:tripId/participants",
     {
       schema: {
+        summary: "Gets all participants of a trip.",
+        tags: ["Participants"],
         params: z.object({
           tripId: z.string().uuid(),
         }),
@@ -15,9 +17,9 @@ export async function getByTrip(app: FastifyInstance) {
           200: z.object({
             participants: z.array(
               z.object({
-                id: z.string(),
+                id: z.string().uuid(),
                 name: z.string().nullish(),
-                email: z.string(),
+                email: z.string().email(),
                 is_confirmed: z.boolean(),
               })
             ),

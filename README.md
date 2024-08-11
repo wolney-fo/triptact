@@ -7,6 +7,7 @@ This project is the back-end service for a comprehensive travel management appli
 - [TripTact](#triptact)
   - [Table of Contents](#table-of-contents)
   - [Key Features:](#key-features)
+  - [Documentation](#documentation)
   - [Project Structure](#project-structure)
   - [Stack](#stack)
   - [Installation](#installation)
@@ -20,6 +21,23 @@ This project is the back-end service for a comprehensive travel management appli
 - **Activity Planning**: Users can define and schedule activities for their trips, including meals, hikes, sightseeing, and more.
 
 The project is built with a focus on scalability and efficiency, ensuring smooth handling of multiple users and their data. It provides robust APIs for seamless interaction with the front-end, making travel planning an enjoyable and organized experience.
+
+## Documentation
+
+Access it on-line in [Scalar](https://triptact.apidocumentation.com/)
+
+or
+
+Run the following steps to open Swagger UI:
+
+1. Run the API:
+   ```sh
+   npm run start:dev
+   ```
+2. Open Swagger page on browser:
+   ```sh
+   http://localhost:3333/docs
+   ```
 
 ## Project Structure
 

@@ -8,6 +8,9 @@ export async function confirm(app: FastifyInstance) {
     "/trips/:tripId/confirm",
     {
       schema: {
+        summary:
+          "Confirms a trip and send confirmation e-mails to invited participants.",
+        tags: ["Trips"],
         params: z.object({
           tripId: z.string().uuid(),
         }),

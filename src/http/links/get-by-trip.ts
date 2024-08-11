@@ -8,6 +8,8 @@ export async function getByTrip(app: FastifyInstance) {
     "/trips/:tripId/links",
     {
       schema: {
+        summary: "Gets a link.",
+        tags: ["Links"],
         params: z.object({
           tripId: z.string().uuid(),
         }),
@@ -15,10 +17,10 @@ export async function getByTrip(app: FastifyInstance) {
           200: z.object({
             links: z.array(
               z.object({
-                id: z.string(),
+                id: z.string().uuid(),
                 title: z.string(),
-                url: z.string(),
-                trip_id: z.string(),
+                url: z.string().url(),
+                trip_id: z.string().uuid(),
               })
             ),
           }),

@@ -8,6 +8,8 @@ export async function create(app: FastifyInstance) {
     "/trips",
     {
       schema: {
+        summary: "Creates a new trip.",
+        tags: ["Trips"],
         body: z.object({
           destination: z.string().min(4),
           starts_at: z.coerce.date(),
@@ -18,7 +20,7 @@ export async function create(app: FastifyInstance) {
         }),
         response: {
           201: z.object({
-            tripId: z.string(),
+            tripId: z.string().uuid(),
           }),
         },
       },

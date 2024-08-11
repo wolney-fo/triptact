@@ -7,6 +7,8 @@ export async function serviceStatus(app: FastifyInstance) {
     "/health",
     {
       schema: {
+        summary: "Verifies the service status.",
+        tags: ["Service"],
         response: {
           200: z.object({
             message: z.string(),
